@@ -65,6 +65,8 @@ function render() {
 	settings.blockHeight = settings.baseBlockHeight * settings.scale;
 }
 
+// ... 保留前面的代码不变 ...
+
 function renderBeginningText() {
 	var upperheight = (trueCanvas.height/2) - ((settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (5/6);
 	var lowerheight = (trueCanvas.height/2) + ((settings.rows * settings.blockHeight) * (2/Math.sqrt(3))) * (11/16);
@@ -72,26 +74,27 @@ function renderBeginningText() {
     var mob, fontSize;
     if(/mobile|Mobile|iOS|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         mob = true;
-        input_text = 'Tap the screen\'s left and right'
-        action_text = 'sides to rotate the hexagon'
-        score_text = 'Match 3+ blocks to score'
-        fontSize = 35
+        input_text = '点击屏幕左侧或右侧'
+        action_text = '即可旋转霓虹矩阵'
+        score_text = '匹配 3 个同色方块来消除'
+        fontSize = 28 // 调整了手机端中文字号
     } else {
         mob = false
-        input_text = 'Use the right and left arrow keys'
-        action_text = 'to rotate the hexagon'
-        score_text = 'Match 3+ blocks to score!'
-        fontSize = 27
+        input_text = '使用键盘左右方向键'
+        action_text = '即可旋转霓虹矩阵'
+        score_text = '匹配 3 个同色方块来消除！'
+        fontSize = 24 // 调整了电脑端中文字号
     }
 	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight-0*settings.scale, fontSize, '#2c3e50', input_text);
 	renderText((trueCanvas.width)/2 + 2 * settings.scale,upperheight+33*settings.scale, fontSize, '#2c3e50', action_text);
     if (!mob) {
-	    drawKey("",(trueCanvas.width)/2 + 2 * settings.scale-2.5,upperheight+38*settings.scale);
+        drawKey("",(trueCanvas.width)/2 + 2 * settings.scale-2.5,upperheight+38*settings.scale);
     }
 
 	renderText((trueCanvas.width)/2 + 2 * settings.scale,lowerheight,fontSize, '#2c3e50', score_text);
 }
 
+// ... 保留后面的代码不变 ...
 function drawKey(key, x, y) {
 	ctx.save();
 	switch (key) {
