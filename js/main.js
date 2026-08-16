@@ -362,7 +362,7 @@ function showHelp() {
 		}
 	}
 
-	$("#inst_main_body").html("<div id = 'instructions_head'>play</div><p>目标是阻止方块离开外部灰色六边形的内部</p><p>" + (settings.platform != 'mobile' ? '按下右箭头键和左箭头键' : '轻触屏幕的左右两侧') + " 旋转六边形." + (settings.platform != 'mobile' ? ' 按下向下箭头可加快方块下落速度': '') + " </p><p>清除方块，通过让3个或更多相同颜色的方块接触来获得积分.</p><p>你的连击记录消失前剩余的时间由外六边形上的彩色线条表示</p> <hr> <p id = 'afterhr'></p> By <a href='https://www.lyf233.cn/#' target='_blank'>lyf</a> & <a href='https://blog.lyf233.cn/' target='_blank'>htk</a><br>Find on<></a> & <a td=com.ha><br>More @ the <a href ='https://github.com/nomadpanda1' target='_blank'>Website</a>");
+	$("#inst_main_body").html("<div id='instructions_head'>游戏说明</div><p>让方块始终停留在外部六边形以内。</p><p>" + (settings.platform != 'mobile' ? '使用左右方向键' : '轻触屏幕左右两侧') + "旋转六边形。" + (settings.platform != 'mobile' ? '按向下方向键可以加快方块下落。' : '') + "</p><p>让三个或更多同色方块相连即可消除并得分。</p><p>外圈的彩色线条表示连击剩余时间。</p><hr><p id='afterhr'></p><a href='https://www.lyf233.cn' target='_blank' rel='noopener'>LYF Games</a>");
 	if (gameState == 1) {
 		pause();
 	}

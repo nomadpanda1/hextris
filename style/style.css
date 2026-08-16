@@ -431,6 +431,54 @@ body {
 	-ms-user-select:none;
 	user-select:none;
 }
+
+/* LYF Games usability layer */
+body { background: #edf0f2; overflow: hidden; }
+#canvas { display: block; }
+#homeBtn {
+	position: fixed;
+	top: 13px;
+	right: 14px;
+	z-index: 3004;
+	display: grid;
+	width: 46px;
+	height: 46px;
+	place-items: center;
+	color: #2c3e50;
+	border: 1px solid rgba(44,62,80,.24);
+	border-radius: 6px;
+	background: rgba(255,255,255,.76);
+	text-decoration: none;
+	font-size: 18px;
+	backdrop-filter: blur(8px);
+}
+#homeBtn:hover, #homeBtn:focus-visible,
+#openSideBar:focus-visible, #pauseBtn:focus-visible, #restartBtn:focus-visible,
+#startBtn:focus-visible { outline: 3px solid #00a8b8; outline-offset: 2px; }
+.game-home-link {
+	display: none !important;
+	padding: 11px 18px;
+	color: #006d77;
+	border: 1px solid #006d77;
+	border-radius: 5px;
+	background: rgba(255,255,255,.72);
+	font: 700 .95rem 'Exo 2', sans-serif;
+	text-decoration: none;
+}
+.game-home-link.shown { display: inline-block !important; }
+#inst_main_body { line-height: 1.5; }
+#inst_main_body a { color: #006d77; }
+
+@media only screen and (max-width: 600px) {
+	#homeBtn { top: 9px; right: 9px; width: 42px; height: 42px; }
+	#openSideBar { top: 2px; left: 2px; width: 54px; height: 54px; }
+	#pauseBtn, #restartBtn { width: 54px; height: 54px; }
+	#highScoreInGameText { top: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
 #afterhr {
 	margin:0;
 	padding:0;
@@ -441,7 +489,9 @@ body {
 	overflow:hidden;
 }
 #gameoverscreen {
-	padding:8px;
+	display:none;
+	padding:0;
+	box-sizing:border-box;
 }
 @font-face {
 	font-family:Exo;
@@ -525,3 +575,7 @@ body {
 	-moz-transform:translate(-50%, 0%);
 	-ms-transform:translate(-50%, 0%);
 }
+
+html, body { width:100%; max-width:100%; }
+#gameoverscreen { width:100%; max-width:100%; padding:0 !important; }
+#buttonCont { display:none; }

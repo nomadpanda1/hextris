@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang='zh-CN'>
 	<head>
-		<meta charset="UTF-8"> <title>Hextris 霓虹矩阵 | 峰の虚拟实验室</title>
-		<meta name="description" content="一个令人上瘾的六边形消除游戏">
+		<meta charset="UTF-8"> <title>Hextris | LYF Games</title>
+		<meta name="description" content="旋转六边形，让三个或更多同色方块相连消除。">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
 		<link rel="icon" type="image/png" href="favicon.ico">
-		<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css?v=20260815-3">
 		
 		<script type='text/javascript' src="vendor/hammer.min.js"></script>
 		<script type='text/javascript' src="vendor/js.cookie.js"></script>
@@ -15,7 +15,7 @@
 		<script type='text/javascript' src="vendor/keypress.min.js"></script>
 		<script type='text/javascript' src="vendor/jquery.js"></script>
 		<script type='text/javascript' src="js/save-state.js"></script>
-		<script type='text/javascript' src="js/view.js"></script>
+		<script type='text/javascript' src="js/view.js?v=20260815-3"></script>
 		<script type='text/javascript' src="js/wavegen.js"></script>
 		<script type='text/javascript' src="js/math.js"></script>
 		<script type='text/javascript' src="js/Block.js"></script>
@@ -26,7 +26,7 @@
 		<script type='text/javascript' src='js/update.js'></script>
 		<script type='text/javascript' src='js/render.js'></script>
 		<script type='text/javascript' src="js/input.js"></script>
-		<script type='text/javascript' src="js/main.js"></script>
+		<script type='text/javascript' src="js/main.js?v=20260815-3"></script>
 		<script type='text/javascript' src="js/initialization.js"></script>
 		<script src="vendor/sweet-alert.min.js"></script>
 		
@@ -34,14 +34,15 @@
 	<body>
 		<canvas id="canvas"></canvas>
 		<div id="overlay" class="faded overlay"></div>
-		<div id='startBtn' ></div>
-		<div id="helpScreen" class='unselectable'>
+		<div id='startBtn' role="button" tabindex="0" aria-label="开始游戏"></div>
+		<div id="helpScreen" class='unselectable' role="dialog" aria-modal="true" aria-label="游戏说明">
 			<div id='inst_main_body'></div>
 		</div>
-		<img id="openSideBar" class='helpText' src="./images/btn_help.svg"/>
+		<img id="openSideBar" class='helpText' src="./images/btn_help.svg" alt="游戏说明" role="button" tabindex="0"/>
 		<div class="faded overlay"></div>
-		<img id="pauseBtn" src="./images/btn_pause.svg"/>
-		<img id='restartBtn' src="./images/btn_restart.svg"/>
+		<img id="pauseBtn" src="./images/btn_pause.svg" alt="暂停游戏" role="button" tabindex="0"/>
+		<img id='restartBtn' src="./images/btn_restart.svg" alt="重新开始" role="button" tabindex="0"/>
+		<a id="homeBtn" href="https://www.lyf233.cn" aria-label="返回主站" title="返回主站"><i class="fa fa-home"></i></a>
 		<div id='HIGHSCORE'>最高分</div>
 		
 		<div id='highScoreInGameText'>
@@ -61,12 +62,23 @@
 			<div id='bottomContainer'>
 				<img id='restart' src='./images/btn_restart.svg' height='57px' style='cursor:pointer; margin-bottom: 20px;'>
 				
-				<div id='buttonCont' style='margin-top: 15px;'>
-					<a href="https://www.lyf233.cn" style="color: #00f3ff; text-decoration: none; font-size: 1.1rem; border: 2px solid #00f3ff; padding: 12px 25px; border-radius: 8px; display: inline-block; font-weight: bold; font-family: 'Exo 2', sans-serif; background: rgba(0, 243, 255, 0.1); transition: all 0.3s; box-shadow: 0 0 10px rgba(0,243,255,0.2);">
-						返回 峰の数字自留地
-					</a>
-				</div>
+				<div id='buttonCont' aria-hidden="true"></div>
 			</div>
 		</div>
+		<script>
+			document.addEventListener('keydown', function (event) {
+				if (event.key !== 'Enter' && event.key !== ' ') return;
+				if (document.activeElement.id === 'startBtn') {
+					event.preventDefault();
+					$('#startBtn').trigger('mousedown');
+				} else if (document.activeElement.id === 'openSideBar') {
+					event.preventDefault();
+					showHelp();
+				} else if (document.activeElement.id === 'pauseBtn' || document.activeElement.id === 'restartBtn') {
+					event.preventDefault();
+					$(document.activeElement).trigger('mousedown');
+				}
+			});
+		</script>
 	</body>
 </html>

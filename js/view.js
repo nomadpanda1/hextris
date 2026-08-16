@@ -154,6 +154,7 @@ function gameOverDisplay() {
 		$("#currentHighScore").text(highscores[0])
 	}
 	$("#gameoverscreen").fadeIn();
+	$(".game-home-link").addClass("shown");
 	$("#buttonCont").fadeIn();
 	$("#container").fadeIn();
 	$("#socialShare").fadeIn();
